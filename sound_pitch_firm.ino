@@ -26,11 +26,11 @@ complex_t bfly_buff[FFT_N];		/* FFT buffer */
 uint16_t spektrum[FFT_N/2];		/* Spectrum output buffer */
 uint16_t base_buf[FFT_N/2];
 
-unsigned int s1[]={600,1200,1800,2400,3000,3600,4200,4800,5400,6000,6600,7200,7800,8400,9000,9600,10200,10800,11400,12000,12600,13200,13800,14400,15000,15600,16200,16800,17400,18000,18600,19200,19800,20400,21000,21600,22200,22800,23400,24000,24600,25200,25800,26400,27000,27600,28200,28800,29400,30000,30600,31200,31800,32400,33000,33600,34200,34800,35400,36000,36600,37200,37800,38400};
 unsigned int s2[]={300,600,900,1200,1500,1800,2100,2400,2700,3000,3300,3600,3900,4200,4500,4800,5100,5400,5700,6000,6300,6600,6900,7200,7500,7800,8100,8400,8700,9000,9300,9600,9900,10200,10500,10800,11100,11400,11700,12000,12300,12600,12900,13200,13500,13800,14100,14400,14700,15000,15300,15600,15900,16200,16500,16800,17100,17400,17700,18000,18300,18600,18900,19200};
-unsigned int s3[]={150,300,450,600,750,900,1050,1200,1350,1500,1650,1800,1950,2100,2250,2400,2550,2700,2850,3000,3150,3300,3450,3600,3750,3900,4050,4200,4350,4500,4650,4800,4950,5100,5250,5400,5550,5700,5850,6000,6150,6300,6450,6600,6750,6900,7050,7200,7350,7500,7650,7800,7950,8100,8250,8400,8550,8700,8850,9000,9150,9300,9450,9600};
-unsigned int s4[]={75,150,225,300,375,450,525,600,675,750,825,900,975,1050,1125,1200,1275,1350,1425,1500,1575,1650,1725,1800,1875,1950,2025,2100,2175,2250,2325,2400,2475,2550,2625,2700,2775,2850,2925,3000,3075,3150,3225,3300,3375,3450,3525,3600,3675,3750,3825,3900,3975,4050,4125,4200,4275,4350,4425,4500,4575,4650,4725,4800};
+unsigned int s1[]={150,300,450,600,750,900,1050,1200,1350,1500,1650,1800,1950,2100,2250,2400,2550,2700,2850,3000,3150,3300,3450,3600,3750,3900,4050,4200,4350,4500,4650,4800,4950,5100,5250,5400,5550,5700,5850,6000,6150,6300,6450,6600,6750,6900,7050,7200,7350,7500,7650,7800,7950,8100,8250,8400,8550,8700,8850,9000,9150,9300,9450,9600};
+unsigned int s0[]={75,150,225,300,375,450,525,600,675,750,825,900,975,1050,1125,1200,1275,1350,1425,1500,1575,1650,1725,1800,1875,1950,2025,2100,2175,2250,2325,2400,2475,2550,2625,2700,2775,2850,2925,3000,3075,3150,3225,3300,3375,3450,3525,3600,3675,3750,3825,3900,3975,4050,4125,4200,4275,4350,4425,4500,4575,4650,4725,4800};
 
+unsigned int *spec[]={s0,s1,s2};
 int i,j,cur=0;
 int n=64,tot=50;
 int diff[5];
@@ -158,14 +158,16 @@ ISR(ADC_vect)
 
 	position++;
 }
-void adcInit(){
+void adcInit(int mode){
 	/*  REFS0 : VCC use as a ref, IR_AUDIO : channel selection, ADEN : ADC Enable, ADSC : ADC Start, ADATE : ADC Auto Trigger Enable, ADIE : ADC Interrupt Enable,  ADPS : ADC Prescaler  */
 	// free running ADC mode, f = ( 16MHz / prescaler ) / 13 cycles per conversion
 	ADMUX = _BV(REFS0) | IR_AUDIO; // | _BV(ADLAR);
-	//ADCSRA = _BV(ADSC) | _BV(ADEN) | _BV(ADATE) | _BV(ADIE) | _BV(ADPS2) ;// prescaler 16 (0-16000)~ 40000Hz 1200Hz
-	//ADCSRA = _BV(ADSC) | _BV(ADEN) | _BV(ADATE) | _BV(ADIE) | _BV(ADPS2) | _BV(ADPS0);// prescaler 32 20000Hz 600Hz
-	//ADCSRA = _BV(ADSC) | _BV(ADEN) | _BV(ADATE) | _BV(ADIE) | _BV(ADPS2) | _BV(ADPS1); //prescaler 64 : 19231 Hz - 300Hz per 64 divisions 10000Hz
-	ADCSRA = _BV(ADSC) | _BV(ADEN) | _BV(ADATE) | _BV(ADIE) | _BV(ADPS2) | _BV(ADPS1) | _BV(ADPS0); // prescaler 128 : 9615 Hz - 150 Hz per 64 divisions, better for most music 5000Hz
+	if(mode==2)
+		ADCSRA = _BV(ADSC) | _BV(ADEN) | _BV(ADATE) | _BV(ADIE) | _BV(ADPS2) | _BV(ADPS0);// prescaler 32 38462 Hz 600Hz per division upto 18000Hz
+	else if(mode==1)
+		ADCSRA = _BV(ADSC) | _BV(ADEN) | _BV(ADATE) | _BV(ADIE) | _BV(ADPS2) | _BV(ADPS1); //prescaler 64 : 19231 Hz - 300Hz per 64 divisions 10000Hz
+	else if(mode==0)
+		ADCSRA = _BV(ADSC) | _BV(ADEN) | _BV(ADATE) | _BV(ADIE) | _BV(ADPS2) | _BV(ADPS1) | _BV(ADPS0); // prescaler 128 : 9615 Hz - 150 Hz per 64 divisions, better for most music 5000Hz
 	sei();
 }
 void adcCalb(){
@@ -183,33 +185,75 @@ void adcCalb(){
 	zero = -midl/2;
 	Serial.println("Done.");
 }
+
+void pitch (int mode,int del)
+{
+	if(mode<0 ||mode>2)
+		return;
+	adcInit(mode);
+	adcCalb();
+	int s=0,pk=0;
+	while(1)
+	{
+		if (position == FFT_N)
+		{
+			s=0;
+			pk=0;
+			fft_run();
+			for(i=2;i<64;i++)
+			{
+				if(pk<spektrum[i])
+				{
+					pk=spektrum[i];
+					s=i;
+				}
+			}
+			//Data having the frequency
+			Serial.println(spec[mode][s]);
+			delay(del);
+			position = 0;
+		}
+	}
+}
+int s_power(int del)
+{
+	delay(del);
+	return(analogRead(0));
+}
+
+void run_fft(int mode,int del)
+{
+	if(mode<0 ||mode>2)
+		return;
+	adcInit(mode);
+	adcCalb();
+	int s=0,pk=0;
+	while(1)
+	{
+		if (position == FFT_N)
+		{
+			s=0;
+			pk=0;
+			fft_run();
+			//FFT Spectrum
+			printb(spektrum);
+			delay(del);
+			position = 0;
+		}
+	}
+}
 void setup()
 {
   Serial.begin(57600);
-  adcInit();
-  adcCalb();
-  int nos=70;
-  int s=0,t,mini,pk=0,p;
-  while(1)
-  {
-	if (position == FFT_N)
-	{
-		s=0;
-		pk=0;
-		fft_run();
-		for(i=2;i<64;i++)
-		{
-			if(pk<spektrum[i])
-			{
-				pk=spektrum[i];
-				s=i;
-			}
-		}
-		Serial.println(s4[s]);
-		delay(10);
-		position = 0;
-	}
-  }
+  //Show Pitch
+  //pitch(2,10);
+  
+  //Show power level
+  //while(1)
+  //	Serial.println(s_power(10));
+  
+  //Run FFT
+  run_fft(0,10);
 }
 
 void loop()

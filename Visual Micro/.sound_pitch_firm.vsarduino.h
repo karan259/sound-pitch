@@ -13,8 +13,11 @@ void coll_sample(uint16_t *in,char *s,int tot,int opt);
 int d(uint16_t *a,uint16_t *b);
 int peak(uint16_t a[]);
 void establishContact();
-void adcInit();
+void adcInit(int mode);
 void adcCalb();
+void pitch (int mode,int del);
+int s_power(int del);
+void run_fft(int mode,int del);
 //
 //
 
