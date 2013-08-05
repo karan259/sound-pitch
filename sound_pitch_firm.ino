@@ -189,7 +189,7 @@ void adcCalb(){
 	Serial.println("Done.");
 }
 
-int pitch (int mode,int del)
+int pitch (int mode)
 {
 	int pitc=0;
 	if(mode<0 ||mode>2)
@@ -222,7 +222,7 @@ int pitch (int mode,int del)
 			goto l1;
 			//return pitc;
 			
-			delay(del);
+			//delay(del);
 			position = 0;
 		}
 	}
@@ -278,7 +278,8 @@ void setup()
 void loop()
 {
 }
-unsigned char sp;
+unsigned char sp,sp1;
+int ptc;
 void receiveI2C(int bytesIn)
 {
 	int i=0;
@@ -286,8 +287,14 @@ void receiveI2C(int bytesIn)
 	//  Serial.println(bytesIn);
 	while(0 < Wire.available()) // loop through all but the last
 		cmd[i++]=(int)Wire.read();
-	if(cmd[1]==2)
-		sp=map(analogRead(0),0,1023,0,255);	
+	if(cmd[1]==1)
+	{
+		ptc=pitch(1);
+		sp=map(ptc,0,1023,0,255);	;
+		//sp1=ptc/256;
+	}
+	//else if(cmd[1]==2)
+	//	sp=map(analogRead(0),0,1023,0,255);	
 		
 	/*Serial.print(cmd[1]);
 	Serial.print(" ");
@@ -308,11 +315,11 @@ void requestEvent()
 		//ptc=pitch(2,10);
 		//buf[0]=ptc%256;
 		//buf[1]=ptc/256;
-		Wire.write("pitch     ");   // respond with message of 10 bytes
+		Wire.write(sp);   // respond with message of 10 bytes
+		//Wire.write(sp1);
 	}
 	else if(cmd[1] == 2)
 	{
-
 		sp=map(analogRead(0),0,1023,0,255);
 		Wire.write(sp);   // respond with message of 10 bytes
 	}                                     // as expected by master

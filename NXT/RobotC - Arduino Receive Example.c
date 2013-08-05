@@ -34,16 +34,12 @@ void i2c_write_registers(ubyte register_2_read, int message_size, int return_siz
   readI2CReply(ARDUINO_PORT, &I2Creply[0], return_size);
 
   int i = 0;
-  //if(byte1==2)
-  //{
+  if(byte1==2)
   	writeDebugStream("%i", (int)I2Creply[0]);
-  	//writeDebugStream("%d", I2Creply[1]);
-  	//writeDebugStream("%d", I2Creply[2]);
-  	//writeDebugStream("%d", I2Creply[3]);
-  	//writeDebugStream("%d", I2Creply[4]);
-  	//writeDebugStream("%d", I2Creply[5]);
-  //}
-  //else
+  else if(byte1==1)
+  {
+  	writeDebugStream("%i", (int)I2Creply[0]);
+  }
   //	while(true){
 	//  	writeDebugStream("%c", I2Creply[i]);
 	//  	i++;

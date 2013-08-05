@@ -8,7 +8,7 @@
 // See our website, www.dexterindustries.com/howto for more information on the physical setup.
 
 #include <Wire.h>
-
+int cmd[4];
 void setup()
 {
   Wire.begin(0x0A);             // Start I2C on Address 0x0A
@@ -24,14 +24,16 @@ void loop()
 // When data is received, this function is called.
 void receiveI2C(int bytesIn)
 {
-  Serial.print("Bytes: ");
+  int i=0;
+//  Serial.print("Bytes: ");
+//  Serial.println(bytesIn);
+  while(0 < Wire.available()) // loop through all but the last
+    cmd[i++]=(int)Wire.read();
   
-  while(1 < Wire.available()) // loop through all but the last
-  {
-    char c = Wire.read();     // Receive the incoming byte
-    Serial.print(c);          // Print the incoming byte as a character on the Serial line.
-    Serial.print(" ");
-  }
-  int x = Wire.read();        // Read the incoming byte
-  Serial.println(x);          // Print the incoming byte
+  Serial.print(cmd[1]);
+  Serial.print(" ");
+    Serial.print(cmd[2]);
+  Serial.print(" ");
+    Serial.print(cmd[3]);
+  Serial.println(" ");
 }

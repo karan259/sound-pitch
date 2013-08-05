@@ -15,7 +15,7 @@ int peak(uint16_t a[]);
 void establishContact();
 void adcInit(int mode);
 void adcCalb();
-int pitch (int mode,int del);
+int pitch (int mode);
 unsigned char s_power(int del);
 void run_fft(int mode,int del);
 //
