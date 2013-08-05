@@ -96,8 +96,6 @@
             <Value>C:\Program Files (x86)\Arduino\libraries\MemoryFree\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib\utility</Value>
-            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control</Value>
-            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\SD</Value>
@@ -178,8 +176,6 @@
             <Value>C:\Program Files (x86)\Arduino\libraries\MemoryFree\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib\utility</Value>
-            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control</Value>
-            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\SD</Value>
@@ -274,8 +270,6 @@
             <Value>C:\Program Files (x86)\Arduino\libraries\MemoryFree\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib\utility</Value>
-            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control</Value>
-            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\SD</Value>
@@ -356,8 +350,6 @@
             <Value>C:\Program Files (x86)\Arduino\libraries\MemoryFree\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib\utility</Value>
-            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control</Value>
-            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\SD</Value>
@@ -396,12 +388,6 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Slave_Receiver.ino">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="a.ino">
-      <SubType>compile</SubType>
-    </Compile>
     <None Include="sound_pitch_firm.ino">
       <SubType>compile</SubType>
     </None>

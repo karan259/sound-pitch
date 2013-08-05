@@ -228,10 +228,12 @@ int pitch (int mode,int del)
 	}
 	l1: return pitc;
 }
-int s_power(int del)
+unsigned char s_power(int del)
 {
+	unsigned char b;
+	b=map(analogRead(0),0,1023,0,255);
 	delay(del);
-	return(analogRead(0));
+	return(b);
 }
 
 void run_fft(int mode,int del)
@@ -276,7 +278,7 @@ void setup()
 void loop()
 {
 }
-
+unsigned char sp;
 void receiveI2C(int bytesIn)
 {
 	int i=0;
@@ -284,7 +286,9 @@ void receiveI2C(int bytesIn)
 	//  Serial.println(bytesIn);
 	while(0 < Wire.available()) // loop through all but the last
 		cmd[i++]=(int)Wire.read();
-	
+	if(cmd[1]==2)
+		sp=map(analogRead(0),0,1023,0,255);	
+		
 	/*Serial.print(cmd[1]);
 	Serial.print(" ");
 	Serial.print(cmd[2]);
@@ -296,18 +300,21 @@ void receiveI2C(int bytesIn)
 }
 void requestEvent()
 {
-	//Wire.write("Pitch     "); 
-	int ptc;
+	//Wire.write("Pitch     ");
 	char buf[10];
 	if(cmd[1] == 1)
 	{
+
 		//ptc=pitch(2,10);
 		//buf[0]=ptc%256;
 		//buf[1]=ptc/256;
 		Wire.write("pitch     ");   // respond with message of 10 bytes
 	}
-	else if(cmd[1] == 2){
-		Wire.write("Sound     ");   // respond with message of 10 bytes
+	else if(cmd[1] == 2)
+	{
+
+		sp=map(analogRead(0),0,1023,0,255);
+		Wire.write(sp);   // respond with message of 10 bytes
 	}                                     // as expected by master
 	else if(cmd[1] == 3){
 		Wire.write("FFT       ");   // respond with message of 10 bytes

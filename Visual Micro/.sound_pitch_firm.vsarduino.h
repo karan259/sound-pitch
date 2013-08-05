@@ -16,7 +16,7 @@ void establishContact();
 void adcInit(int mode);
 void adcCalb();
 int pitch (int mode,int del);
-int s_power(int del);
+unsigned char s_power(int del);
 void run_fft(int mode,int del);
 //
 //
