@@ -34,12 +34,23 @@ void i2c_write_registers(ubyte register_2_read, int message_size, int return_siz
   readI2CReply(ARDUINO_PORT, &I2Creply[0], return_size);
 
   int i = 0;
+  //Sound Power Level
   if(byte1==2)
   	writeDebugStream("%i", (int)I2Creply[0]);
-  else if(byte1==1)
-  {
-  	writeDebugStream("%i", (int)I2Creply[0]);
+ 	//Pitch
+ 	if(byte1==1)
+ 	{
+ 		//writeDebugStreamLine("%d", (int)I2Creply[0]+((int)I2Creply[0])*256);
+  	for(int x = 0; x <= return_size-1; x++)
+  		{
+  		writeDebugStream("%d", I2Creply[x]);
+  		writeDebugStream(" ");
+ 			}
   }
+  //else if(byte1==1)
+  //{
+  //	writeDebugStream("%i", (int)I2Creply[0]);
+  //}
   //	while(true){
 	//  	writeDebugStream("%c", I2Creply[i]);
 	//  	i++;
@@ -53,8 +64,12 @@ task main()
 	while(true){
 
 		//i2c_write_registers(0x01, 0x02, 10, 1, 10,0);
-		i2c_write_registers(0x01, 0x02, 10, 2, 1, 10);
-		wait1Msec(100);
+		//Pitch
+		i2c_write_registers(0x01, 0x02, 2, 1, 1, 10);
+		//Sound
+		//i2c_write_registers(0x01, 0x02, 2, 2, 1, 10);
+
+		wait1Msec(50);
 		//i2c_write_registers(0x01, 0x02, 10, 3, 1, 10);
 		//i2c_write_registers(0x01, 0x02, 10, 4, 1, 10);
 		//i2c_read_registers_text(0x01, 0, 10);		// Here we're going to get back "Industries" because we're weriting to the 0x00 register.

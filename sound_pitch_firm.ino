@@ -22,7 +22,7 @@ Processing app is based on codes from boolscott http://boolscott.wordpress.com/2
 volatile  byte  position = 0;
 volatile  long  zero = 0;
 
-int cmd[4];
+int cmd[]={0,0,0,0};
 
 int16_t capture[FFT_N];			/* Wave captureing buffer */
 complex_t bfly_buff[FFT_N];		/* FFT buffer */
@@ -274,12 +274,28 @@ void setup()
   //run_fft(0,10);
   
 }
-
+ uint8_t sp,sp1,buf[16];
+int ptc;
 void loop()
 {
+	if(cmd[1]!=0)
+	{
+		if(cmd[1]==2)
+			buf[0]=map(analogRead(0),0,1023,0,255);
+		if(cmd[1]==1)
+		{
+			ptc=pitch(1);
+			buf[0]=ptc%256;
+			buf[1]=ptc/256;
+			Serial.print(ptc);
+			Serial.print(" ");
+			Serial.print((int)buf[0]);
+			Serial.print(" ");
+			Serial.println((int)buf[1]);
+		}
+	}
 }
-unsigned char sp,sp1;
-int ptc;
+
 void receiveI2C(int bytesIn)
 {
 	int i=0;
@@ -287,7 +303,7 @@ void receiveI2C(int bytesIn)
 	//  Serial.println(bytesIn);
 	while(0 < Wire.available()) // loop through all but the last
 		cmd[i++]=(int)Wire.read();
-	if(cmd[1]==1)
+	/*if(cmd[1]==1)
 	{
 		ptc=pitch(1);
 		sp=map(ptc,0,1023,0,255);	;
@@ -307,8 +323,13 @@ void receiveI2C(int bytesIn)
 }
 void requestEvent()
 {
+	if(cmd[1]==1)
+		Wire.write(buf,2);	
+	
+	if(cmd[1]==2)
+		Wire.write(buf,1);
 	//Wire.write("Pitch     ");
-	char buf[10];
+	/*/char buf[10];
 	if(cmd[1] == 1)
 	{
 
@@ -329,4 +350,5 @@ void requestEvent()
 	else {
 		Wire.write("Wrong Cmd ");   // respond with message of 10 bytes
 	}
+	*/
 }
