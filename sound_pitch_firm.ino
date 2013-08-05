@@ -37,7 +37,7 @@ unsigned int *spec[]={s0,s1,s2};
 int i,j,cur=0;
 int n=64,tot=50;
 int diff[5];
-
+uint8_t buf[16];
 //Print the FFT_N/2 bytes array of the FFT output
 void printb(uint16_t in[])
 {
@@ -189,12 +189,12 @@ void adcCalb(){
 	Serial.println("Done.");
 }
 
-int pitch (int mode)
+void pitch (int mode)
 {
 	int pitc=0;
 	if(mode<0 ||mode>2)
-		return 0;
-	adcInit(mode);
+		return;
+	adcInit(1);
 	adcCalb();
 	int s=0,pk=0;
 	while(1)
@@ -218,15 +218,17 @@ int pitch (int mode)
 			
 			//For one call 
 			pitc=spec[mode][s];
+			buf[0]=pitc%256;
+			buf[1]=pitc/256;
 			//Serial.println(pitc);
-			goto l1;
+			//goto l1;
 			//return pitc;
 			
 			//delay(del);
 			position = 0;
 		}
 	}
-	l1: return pitc;
+	//l1: return pitc;
 }
 unsigned char s_power(int del)
 {
@@ -240,8 +242,7 @@ void run_fft(int mode,int del)
 {
 	if(mode<0 ||mode>2)
 		return;
-	adcInit(mode);
-	adcCalb();
+	
 	int s=0,pk=0;
 	while(1)
 	{
@@ -263,6 +264,7 @@ void setup()
   Wire.onRequest(requestEvent);
   Wire.onReceive(receiveI2C);   // Receive Event from Master
   Serial.begin(9600);
+  
   //Show Pitch
   //pitch(2,10);
   
@@ -274,8 +276,8 @@ void setup()
   //run_fft(0,10);
   
 }
- uint8_t sp,sp1,buf[16];
-int ptc;
+ uint8_t sp,sp1;
+int ptc,flag=0;
 void loop()
 {
 	if(cmd[1]!=0)
@@ -284,14 +286,7 @@ void loop()
 			buf[0]=map(analogRead(0),0,1023,0,255);
 		if(cmd[1]==1)
 		{
-			ptc=pitch(1);
-			buf[0]=ptc%256;
-			buf[1]=ptc/256;
-			Serial.print(ptc);
-			Serial.print(" ");
-			Serial.print((int)buf[0]);
-			Serial.print(" ");
-			Serial.println((int)buf[1]);
+			pitch(1);
 		}
 	}
 }
@@ -303,6 +298,12 @@ void receiveI2C(int bytesIn)
 	//  Serial.println(bytesIn);
 	while(0 < Wire.available()) // loop through all but the last
 		cmd[i++]=(int)Wire.read();
+	//if(cmd[1]==1)
+	//{
+		
+	//	adcInit(1);
+	//	adcCalb();
+	//}
 	/*if(cmd[1]==1)
 	{
 		ptc=pitch(1);
@@ -324,7 +325,13 @@ void receiveI2C(int bytesIn)
 void requestEvent()
 {
 	if(cmd[1]==1)
+	{
 		Wire.write(buf,2);	
+		//Serial.print(" ");
+		//Serial.print((int)buf[0]);
+		//Serial.print(" ");
+		//Serial.println((int)buf[1]);
+	}
 	
 	if(cmd[1]==2)
 		Wire.write(buf,1);
