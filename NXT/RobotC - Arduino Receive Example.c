@@ -43,6 +43,7 @@ task main()
 		// i2c_write_registers(0x01, 0x01, 0x00, 0x0A, 0, 0, 0);
 		i2c_read_registers_text(0x01, 0, 10);		// Here we're going to get back "Dexter" because we're writing to the 0x01 register.
 		i2c_read_registers_text(0x00, 0, 10);		// Here we're going to get back "Industries" because we're weriting to the 0x00 register.
+		//i2c_read_registers_text(0x00, 0, 10);
 		wait1Msec(1000);
 	}
 

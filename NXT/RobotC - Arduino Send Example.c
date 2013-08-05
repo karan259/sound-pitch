@@ -59,7 +59,7 @@ void i2c_write_registers(ubyte register_2_write, int message_size, int return_si
 task main()
 {
 	while(true){
-		i2c_write_registers(0x01, 0x01, 0x00, 0x0A, 0, 0, 0);
+		i2c_write_registers(0x01, 0x03, 0x00, 0x0B, 257, 2, 1);
 		writeDebugStreamLine("Written!");
 		wait1Msec(1000);
 	}

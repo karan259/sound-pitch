@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>6.1</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.CPP</ToolchainName>
-    <ProjectGuid>{07b459b4-8d76-4638-bc6d-a459ba2d616b}</ProjectGuid>
+    <ProjectGuid>{5fe1b0ee-865f-4a8e-a5a1-337ed19e0149}</ProjectGuid>
     <avrdevice>atmega328p</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
@@ -27,13 +27,14 @@
     <UncachedRange />
     <BootSegment>0</BootSegment>
     <AsfFrameworkConfig>
-      <framework-data xmlns="">
+      <framework-data>
         <options />
         <configurations />
         <files />
         <documentation help="" />
+        <offline-documentation help="" />
         <dependencies>
-          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.7.2" />
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.3.0" />
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
@@ -49,10 +50,76 @@
         <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcc.compiler.symbols.DefSymbols>
           <ListValues>
+            <Value>__AVR_ATmega328P__</Value>
+            <Value>ARDUINO=105</Value>
+            <Value>F_CPU=16000000L</Value>
+            <Value>__AVR__</Value>
           </ListValues>
         </avrgcc.compiler.symbols.DefSymbols>
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
+            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
+            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiA</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiA\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiCS</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiCS\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiI2C</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiI2C\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiM</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiM\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUART</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUART\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUS</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUS\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\firmware</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\firmware\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\arjo</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\arjo\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\dGPS</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\dGPS\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\EEPROM</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\EEPROM\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Esplora</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Esplora\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Ethernet</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Ethernet\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\ffft</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\ffft\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Firmata</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Firmata\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\GSM</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\GSM\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\LiquidCrystal</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\LiquidCrystal\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\MemoryFree</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\MemoryFree\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SD</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SD\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SoftwareSerial</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SoftwareSerial\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SPI</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SPI\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Stepper</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Stepper\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\TFT</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\TFT\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\WiFi</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\WiFi\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Wire</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Wire\utility</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\include\</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\include\avr\</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\lib\gcc\avr\4.3.2\include\</Value>
           </ListValues>
         </avrgcc.compiler.directories.IncludePaths>
         <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
@@ -65,10 +132,78 @@
         <avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcccpp.compiler.symbols.DefSymbols>
           <ListValues>
+            <Value>__AVR_ATmega328P__</Value>
+            <Value>ARDUINO=105</Value>
+            <Value>F_CPU=16000000L</Value>
+            <Value>__AVR__</Value>
           </ListValues>
         </avrgcccpp.compiler.symbols.DefSymbols>
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
+            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
+            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiA</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiA\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiCS</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiCS\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiI2C</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiI2C\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiM</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiM\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUART</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUART\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUS</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUS\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\firmware</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\firmware\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\arjo</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\arjo\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\dGPS</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\dGPS\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\EEPROM</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\EEPROM\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Esplora</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Esplora\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Ethernet</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Ethernet\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\ffft</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\ffft\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Firmata</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Firmata\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\GSM</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\GSM\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\LiquidCrystal</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\LiquidCrystal\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\MemoryFree</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\MemoryFree\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SD</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SD\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SoftwareSerial</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SoftwareSerial\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SPI</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SPI\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Stepper</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Stepper\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\TFT</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\TFT\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\WiFi</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\WiFi\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Wire</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Wire\utility</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\include\</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\include\avr\</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\lib\gcc\avr\4.3.2\include\</Value>
+            <Value>
+            </Value>
           </ListValues>
         </avrgcccpp.compiler.directories.IncludePaths>
         <avrgcccpp.compiler.optimization.level>Optimize (-O1)</avrgcccpp.compiler.optimization.level>
@@ -93,10 +228,76 @@
         <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcc.compiler.symbols.DefSymbols>
           <ListValues>
+            <Value>__AVR_ATmega328P__</Value>
+            <Value>ARDUINO=105</Value>
+            <Value>F_CPU=16000000L</Value>
+            <Value>__AVR__</Value>
           </ListValues>
         </avrgcc.compiler.symbols.DefSymbols>
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
+            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
+            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiA</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiA\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiCS</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiCS\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiI2C</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiI2C\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiM</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiM\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUART</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUART\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUS</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUS\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\firmware</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\firmware\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\arjo</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\arjo\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\dGPS</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\dGPS\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\EEPROM</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\EEPROM\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Esplora</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Esplora\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Ethernet</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Ethernet\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\ffft</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\ffft\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Firmata</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Firmata\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\GSM</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\GSM\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\LiquidCrystal</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\LiquidCrystal\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\MemoryFree</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\MemoryFree\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SD</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SD\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SoftwareSerial</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SoftwareSerial\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SPI</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SPI\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Stepper</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Stepper\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\TFT</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\TFT\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\WiFi</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\WiFi\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Wire</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Wire\utility</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\include\</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\include\avr\</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\lib\gcc\avr\4.3.2\include\</Value>
           </ListValues>
         </avrgcc.compiler.directories.IncludePaths>
         <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
@@ -109,24 +310,76 @@
         <avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcccpp.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>ARDUINO=103</Value>
             <Value>__AVR_ATmega328P__</Value>
+            <Value>ARDUINO=105</Value>
             <Value>F_CPU=16000000L</Value>
             <Value>__AVR__</Value>
           </ListValues>
         </avrgcccpp.compiler.symbols.DefSymbols>
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
-            <Value>D:\Arduino\arduino-1.0.3-teensy3-beta10-windows\arduino-1.0.3\hardware\arduino\cores\arduino</Value>
-            <Value>D:\Arduino\arduino-1.0.3-teensy3-beta10-windows\arduino-1.0.3\hardware\arduino\variants\standard</Value>
-            <Value>D:\Arduino\arduino-1.0.3-teensy3-beta10-windows\arduino-1.0.3\libraries\EEPROM</Value>
-            <Value>D:\Arduino\arduino-1.0.3-teensy3-beta10-windows\arduino-1.0.3\libraries\EEPROM\utility</Value>
-            <Value>C:\Users\tl\Documents\Arduino\Sketch Folder\libraries\Bounce</Value>
-            <Value>C:\Users\tl\Documents\Arduino\Sketch Folder\libraries\Bounce\utility</Value>
-            <Value>d:\arduino\arduino-1.0.3-teensy3-beta10-windows\arduino-1.0.3\hardware\tools\avr\avr\include\</Value>
-            <Value>d:\arduino\arduino-1.0.3-teensy3-beta10-windows\arduino-1.0.3\hardware\tools\avr\avr\include\avr\</Value>
-            <Value>d:\arduino\arduino-1.0.3-teensy3-beta10-windows\arduino-1.0.3\hardware\tools\avr\avr\</Value>
-            <Value>d:\arduino\arduino-1.0.3-teensy3-beta10-windows\arduino-1.0.3\hardware\tools\avr\lib\gcc\avr\4.3.2\include\</Value>
+            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
+            <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiA</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiA\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiCS</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiCS\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiI2C</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiI2C\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiM</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiM\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUART</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUART\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUS</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\BrickPiUS\utility</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\firmware</Value>
+            <Value>C:\Users\John\Documents\Arduino\libraries\firmware\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\arjo</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\arjo\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\dGPS</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\dGPS\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\EEPROM</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\EEPROM\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Esplora</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Esplora\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Ethernet</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Ethernet\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\ffft</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\ffft\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Firmata</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Firmata\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\GSM</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\GSM\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\LiquidCrystal</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\LiquidCrystal\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\MemoryFree</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\MemoryFree\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\PS2X_lib\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Control\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Robot_Motor\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SD</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SD\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SoftwareSerial</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SoftwareSerial\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SPI</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\SPI\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Stepper</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Stepper\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\TFT</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\TFT\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\WiFi</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\WiFi\utility</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Wire</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Wire\utility</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\include\</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\include\avr\</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\</Value>
+            <Value>c:\program files (x86)\arduino\hardware\tools\avr\lib\gcc\avr\4.3.2\include\</Value>
             <Value>
             </Value>
           </ListValues>
@@ -142,5 +395,18 @@
       </AvrGccCpp>
     </ToolchainSettings>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="sound_pitch_firm.ino">
+      <SubType>compile</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Visual Micro\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Visual Micro\.sound_pitch_firm.vsarduino.h">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
