@@ -20,12 +20,7 @@ int s_power(int del);
 void run_fft(int mode,int del);
 //
 //
-//
-//
-void receiveI2C(int bytesIn);
 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard\pins_arduino.h" 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino\arduino.h"
 #include "C:\Users\John\Documents\Arduino\sound_pitch_firm\sound_pitch_firm.ino"
-#include "C:\Users\John\Documents\Arduino\sound_pitch_firm\Slave_Receiver.ino"
-#include "C:\Users\John\Documents\Arduino\sound_pitch_firm\a.ino"

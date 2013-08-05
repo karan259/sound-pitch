@@ -33,7 +33,7 @@ void i2c_read_registers_text(ubyte register_2_read, int message_size, int return
   writeDebugStreamLine(" ");
 }
 
-void i2c_write_registers(ubyte register_2_write, int message_size, int return_size, ubyte byte1, ubyte byte2, ubyte byte3, ubyte byte4){
+void i2c_write_registers(ubyte register_2_write, int message_size, int return_size, ubyte byte1, ubyte byte2, ubyte byte3){
   memset(I2Creply, 0, sizeof(I2Creply));
 
   message_size = message_size+3;
@@ -45,7 +45,6 @@ void i2c_write_registers(ubyte register_2_write, int message_size, int return_si
   I2Cmessage[3] = byte1;
   I2Cmessage[4] = byte2;
   I2Cmessage[5] = byte3;
-  I2Cmessage[6] = byte4;
 
   sendI2CMsg(ARDUINO_PORT, &I2Cmessage[0], return_size);
   wait1Msec(20);
@@ -59,7 +58,9 @@ void i2c_write_registers(ubyte register_2_write, int message_size, int return_si
 task main()
 {
 	while(true){
-		i2c_write_registers(0x01, 0x03, 0x00, 0x0B, 257, 2, 1);
+		i2c_write_registers(0x01, 0x02, 0x00, 0, 2, 10);
+		i2c_write_registers(0x01, 0x02, 0x00, 1, 10,0);
+		i2c_write_registers(0x01, 0x02, 0x00, 2, 1, 10);
 		writeDebugStreamLine("Written!");
 		wait1Msec(1000);
 	}

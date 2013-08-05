@@ -396,6 +396,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Slave_Receiver.ino">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="a.ino">
+      <SubType>compile</SubType>
+    </Compile>
     <None Include="sound_pitch_firm.ino">
       <SubType>compile</SubType>
     </None>
