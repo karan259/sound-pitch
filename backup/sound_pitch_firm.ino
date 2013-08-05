@@ -14,15 +14,12 @@ Processing app is based on codes from boolscott http://boolscott.wordpress.com/2
 #include <stdint.h>
 #include <ffft.h>
 #include <MemoryFree.h>
-#include <Wire.h>
 
 #define  IR_AUDIO  0 // ADC channel to capture
 
 
 volatile  byte  position = 0;
 volatile  long  zero = 0;
-
-int cmd[4];
 
 int16_t capture[FFT_N];			/* Wave captureing buffer */
 complex_t bfly_buff[FFT_N];		/* FFT buffer */
@@ -189,11 +186,10 @@ void adcCalb(){
 	Serial.println("Done.");
 }
 
-int pitch (int mode,int del)
+void pitch (int mode,int del)
 {
-	int pitc=0;
 	if(mode<0 ||mode>2)
-		return 0;
+		return;
 	adcInit(mode);
 	adcCalb();
 	int s=0,pk=0;
@@ -213,20 +209,11 @@ int pitch (int mode,int del)
 				}
 			}
 			//Data having the frequency
-			//For multiple frequencies
-			//Serial.println(spec[mode][s]);
-			
-			//For one call 
-			pitc=spec[mode][s];
-			//Serial.println(pitc);
-			goto l1;
-			//return pitc;
-			
+			Serial.println(spec[mode][s]);
 			delay(del);
 			position = 0;
 		}
 	}
-	l1: return pitc;
 }
 int s_power(int del)
 {
@@ -257,10 +244,7 @@ void run_fft(int mode,int del)
 }
 void setup()
 {
-  Wire.begin(0x0A);             // Start I2C on Address 0x0A
-  Wire.onRequest(requestEvent);
-  Wire.onReceive(receiveI2C);   // Receive Event from Master
-  Serial.begin(9600);
+  Serial.begin(57600);
   //Show Pitch
   //pitch(2,10);
   
@@ -269,50 +253,10 @@ void setup()
   //	Serial.println(s_power(10));
   
   //Run FFT
-  //run_fft(0,10);
-  
+  run_fft(0,10);
 }
 
 void loop()
 {
 }
 
-void receiveI2C(int bytesIn)
-{
-	int i=0;
-	//  Serial.print("Bytes: ");
-	//  Serial.println(bytesIn);
-	while(0 < Wire.available()) // loop through all but the last
-		cmd[i++]=(int)Wire.read();
-	
-	/*Serial.print(cmd[1]);
-	Serial.print(" ");
-	Serial.print(cmd[2]);
-	Serial.print(" ");
-	Serial.print(cmd[3]);
-	Serial.println(" ");
-	*/
-	
-}
-void requestEvent()
-{
-	//Wire.write("Pitch     "); 
-	int ptc;
-	char buf[10];
-	if(cmd[1] == 1)
-	{
-		//ptc=pitch(2,10);
-		//buf[0]=ptc%256;
-		//buf[1]=ptc/256;
-		Wire.write("pitch     ");   // respond with message of 10 bytes
-	}
-	else if(cmd[1] == 2){
-		Wire.write("Sound     ");   // respond with message of 10 bytes
-	}                                     // as expected by master
-	else if(cmd[1] == 3){
-		Wire.write("FFT       ");   // respond with message of 10 bytes
-	}
-	else {
-		Wire.write("Wrong Cmd ");   // respond with message of 10 bytes
-	}
-}

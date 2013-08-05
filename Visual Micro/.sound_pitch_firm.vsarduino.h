@@ -15,11 +15,13 @@ int peak(uint16_t a[]);
 void establishContact();
 void adcInit(int mode);
 void adcCalb();
-void pitch (int mode,int del);
+int pitch (int mode,int del);
 int s_power(int del);
 void run_fft(int mode,int del);
 //
 //
+void receiveI2C(int bytesIn);
+void requestEvent();
 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard\pins_arduino.h" 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino\arduino.h"
