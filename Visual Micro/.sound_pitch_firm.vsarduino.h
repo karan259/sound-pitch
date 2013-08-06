@@ -17,6 +17,7 @@ void adcCalb();
 void pitch (int mode);
 unsigned char s_power(int del);
 void fft_r(int mode);
+int ADCsingleREAD(uint8_t adctouse);
 //
 //
 void receiveI2C(int bytesIn);

@@ -69,12 +69,14 @@ task main()
 		//		1- pitch detect
 		//		2- sound power level
 		//		3- FFT
-		cmd=1;
+		cmd=2;
 		mode=0;
 		if(st==0)
 		{
 			i2c_write_registers(0x01, 0x02, 0,cmd,mode);
 			st=1;
+			writeDebugStreamLine("Starting");
+			wait1Msec(4000);
 		}
 		else
 			if(cmd==1)

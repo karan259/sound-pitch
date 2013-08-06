@@ -265,6 +265,27 @@ void fft_r(int mode)
 		}
 	}
 }
+int ADCsingleREAD(uint8_t adctouse)
+{
+	int ADCval;
+
+	ADMUX = adctouse;         // use #1 ADC
+	ADMUX |= (1 << REFS0);    // use AVcc as the reference
+	ADMUX &= ~(1 << ADLAR);   // clear for 10 bit resolution
+	
+	ADCSRA |= (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);    // 128 prescale for 8Mhz
+	ADCSRA |= (1 << ADEN);    // Enable the ADC
+
+	ADCSRA |= (1 << ADSC);    // Start the ADC conversion
+
+	while(ADCSRA & (1 << ADSC));      // Thanks T, this line waits for the ADC to finish
+
+
+	ADCval = ADCL;
+	ADCval = (ADCH << 8) + ADCval;    // ADCH is read so ADC can be updated again
+
+	return ADCval;
+}
 void setup()
 {
   Wire.begin(0x0A);             // Start I2C on Address 0x0A
@@ -276,13 +297,22 @@ void setup()
 int ptc,flag=0;
 void loop()
 {
+	int ADCval;
+
 	new_comm=0;
 	if(cmd[1]!=0)
 	{
 		if(cmd[1]==1)
 			pitch(cmd[2]);
 		if(cmd[1]==2)
-			buf[0]=map(analogRead(0),0,1023,0,255);
+		{
+			while(ADCSRA & (1 << ADSC)); // wait for conversion
+			ADCval = ADCL;
+			ADCval = (ADCH << 8) + ADCval;
+			buf[0]=map(ADCval,0,1023,0,255);
+		}
+			//buf[0]=map(analogRead(0),0,1023,0,255);
+			
 		if(cmd[1]==3)
 			fft_r(cmd[2]);
 	}
