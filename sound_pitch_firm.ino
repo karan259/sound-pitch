@@ -254,12 +254,12 @@ void fft_r(int mode)
 			fft_run();
 			//FFT Spectrum
 			//printb(spektrum);
-			for(int i=0;i<16;i++)
+			for(int i=1;i<16;i++)
 			{
 				temp=0;
 				for(int j=0;j<4;j++)
 					temp+=spektrum[i*4+j];
-				buf[i]=(temp/4)%256;
+				buf[i-1]=(temp/4)%256;
 			}
 			position = 0;
 		}
@@ -321,5 +321,7 @@ void requestEvent()
 		Wire.write(buf,1);
 	
 	if(cmd[1]==3)
+	{
 		Wire.write(buf,15);
+	}
 }

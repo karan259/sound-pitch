@@ -69,8 +69,8 @@ task main()
 		//		1- pitch detect
 		//		2- sound power level
 		//		3- FFT
-		cmd=2;
-		mode=2;
+		cmd=1;
+		mode=0;
 		if(st==0)
 		{
 			i2c_write_registers(0x01, 0x02, 0,cmd,mode);
