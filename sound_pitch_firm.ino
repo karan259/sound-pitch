@@ -194,7 +194,7 @@ void pitch (int mode)
 	int pitc=0;
 	if(mode<0 ||mode>2)
 		return;
-	adcInit(1);
+	adcInit(mode);
 	adcCalb();
 	int s=0,pk=0;
 	while(1)
@@ -238,10 +238,13 @@ unsigned char s_power(int del)
 	return(b);
 }
 
-void run_fft(int mode,int del)
+void fft_r(int mode,int del)
 {
 	if(mode<0 ||mode>2)
 		return;
+	
+	adcInit(mode);
+	adcCalb();
 	
 	int s=0,pk=0;
 	while(1)
