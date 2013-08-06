@@ -238,8 +238,9 @@ unsigned char s_power(int del)
 	return(b);
 }
 
-void fft_r(int mode,int del)
+void fft_r(int mode)
 {
+	int temp;
 	if(mode<0 ||mode>2)
 		return;
 	
@@ -255,8 +256,20 @@ void fft_r(int mode,int del)
 			pk=0;
 			fft_run();
 			//FFT Spectrum
-			printb(spektrum);
-			delay(del);
+			//printb(spektrum);
+			
+			for(int i=0;i<16;i++)
+			{
+				temp=0;
+				for(int j=0;j<4;j++)
+					temp+=spektrum[i*4+j];
+				//temp/=4;
+				buf[i]=(temp/4)%256;
+				//Serial.print(buf[i]);
+				//Serial.print(" ");
+			}
+			//Serial.println(" ");
+			//delay(del);
 			position = 0;
 		}
 	}
@@ -285,11 +298,13 @@ void loop()
 {
 	if(cmd[1]!=0)
 	{
+		if(cmd[1]==1)
+			pitch(1);
 		if(cmd[1]==2)
 			buf[0]=map(analogRead(0),0,1023,0,255);
-		if(cmd[1]==1)
+		if(cmd[1]==3)
 		{
-			pitch(1);
+			fft_r(1);
 		}
 	}
 }
@@ -297,68 +312,27 @@ void loop()
 void receiveI2C(int bytesIn)
 {
 	int i=0;
-	//  Serial.print("Bytes: ");
-	//  Serial.println(bytesIn);
+
 	while(0 < Wire.available()) // loop through all but the last
 		cmd[i++]=(int)Wire.read();
-	//if(cmd[1]==1)
-	//{
-		
-	//	adcInit(1);
-	//	adcCalb();
-	//}
-	/*if(cmd[1]==1)
-	{
-		ptc=pitch(1);
-		sp=map(ptc,0,1023,0,255);	;
-		//sp1=ptc/256;
-	}
-	//else if(cmd[1]==2)
-	//	sp=map(analogRead(0),0,1023,0,255);	
-		
-	/*Serial.print(cmd[1]);
-	Serial.print(" ");
-	Serial.print(cmd[2]);
-	Serial.print(" ");
-	Serial.print(cmd[3]);
-	Serial.println(" ");
-	*/
-	
 }
 void requestEvent()
 {
 	if(cmd[1]==1)
-	{
-		Wire.write(buf,2);	
-		//Serial.print(" ");
-		//Serial.print((int)buf[0]);
-		//Serial.print(" ");
-		//Serial.println((int)buf[1]);
-	}
-	
+			Wire.write(buf,2);		
 	if(cmd[1]==2)
 		Wire.write(buf,1);
-	//Wire.write("Pitch     ");
-	/*/char buf[10];
-	if(cmd[1] == 1)
+	
+	if(cmd[1]==3)
 	{
+		/*for(int i=0;i<16;i++)
+		{
+			Serial.print(buf[i]);
+			Serial.print(" ");
+		}
+		Serial.println("");*/
+		//Wire.write("0123456789012345");//buf,15);
+		Wire.write(buf,15);
 
-		//ptc=pitch(2,10);
-		//buf[0]=ptc%256;
-		//buf[1]=ptc/256;
-		Wire.write(sp);   // respond with message of 10 bytes
-		//Wire.write(sp1);
 	}
-	else if(cmd[1] == 2)
-	{
-		sp=map(analogRead(0),0,1023,0,255);
-		Wire.write(sp);   // respond with message of 10 bytes
-	}                                     // as expected by master
-	else if(cmd[1] == 3){
-		Wire.write("FFT       ");   // respond with message of 10 bytes
-	}
-	else {
-		Wire.write("Wrong Cmd ");   // respond with message of 10 bytes
-	}
-	*/
 }

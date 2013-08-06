@@ -38,7 +38,7 @@ void i2c_write_registers(ubyte register_2_read, int message_size, int return_siz
   if(byte1==2)
   	writeDebugStream("%i", (int)I2Creply[0]);
  	//Pitch
- 	if(byte1==1)
+ 	else if(byte1==1)
  	{
  		writeDebugStream("%d", (int)I2Creply[0]+(int)I2Creply[1]*256);//+((int)I2Creply[0])*256);
  		/*writeDebugStream(" ");
@@ -47,6 +47,15 @@ void i2c_write_registers(ubyte register_2_read, int message_size, int return_siz
   		writeDebugStream("%d", I2Creply[x]);
   		writeDebugStream(" ");
  			}*/
+  }
+  else if(byte1==3)
+  {
+  	//writeDebugStreamLine(" ");
+  	for(int x = 0; x <return_size; x++)
+  		{
+  		writeDebugStream("%i", I2Creply[x]);
+  		writeDebugStream(" ");
+ 			}
   }
   //else if(byte1==1)
   //{
@@ -66,7 +75,7 @@ task main()
 
 		//i2c_write_registers(0x01, 0x02, 10, 1, 10,0);
 		//Pitch
-		i2c_write_registers(0x01, 0x02, 2, 1, 1, 10);
+		i2c_write_registers(0x01, 0x02, 13, 3, 1, 10);
 		//Sound
 		//i2c_write_registers(0x01, 0x02, 2, 2, 1, 10);
 
