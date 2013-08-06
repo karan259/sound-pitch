@@ -22,7 +22,7 @@ Processing app is based on codes from boolscott http://boolscott.wordpress.com/2
 volatile  byte  position = 0;
 volatile  long  zero = 0;
 
-int cmd[]={0,0,0,0};
+int cmd[]={0,0,0,0},oc[]={0,0};
 
 int16_t capture[FFT_N];			/* Wave captureing buffer */
 complex_t bfly_buff[FFT_N];		/* FFT buffer */
@@ -38,6 +38,7 @@ int i,j,cur=0;
 int n=64,tot=50;
 int diff[5];
 uint8_t buf[16];
+int new_comm=0;
 //Print the FFT_N/2 bytes array of the FFT output
 void printb(uint16_t in[])
 {
@@ -142,12 +143,6 @@ int peak(uint16_t a[])
   return pk;
 }
 
-void establishContact() {
-	while (Serial.available() <= 0) {
-		Serial.write('A');   // send a capital A
-		delay(300);
-	}
-}
 
 // free running ADC fills capture buffer
 ISR(ADC_vect)
@@ -191,6 +186,7 @@ void adcCalb(){
 
 void pitch (int mode)
 {
+	Serial.println(mode);
 	int pitc=0;
 	if(mode<0 ||mode>2)
 		return;
@@ -199,6 +195,8 @@ void pitch (int mode)
 	int s=0,pk=0;
 	while(1)
 	{
+		if(new_comm==1)
+			break;
 		if (position == FFT_N)
 		{
 			s=0;
@@ -215,20 +213,17 @@ void pitch (int mode)
 			//Data having the frequency
 			//For multiple frequencies
 			//Serial.println(spec[mode][s]);
-			
+	
 			//For one call 
 			pitc=spec[mode][s];
 			buf[0]=pitc%256;
 			buf[1]=pitc/256;
 			//Serial.println(pitc);
-			//goto l1;
 			//return pitc;
 			
-			//delay(del);
 			position = 0;
 		}
 	}
-	//l1: return pitc;
 }
 unsigned char s_power(int del)
 {
@@ -250,6 +245,8 @@ void fft_r(int mode)
 	int s=0,pk=0;
 	while(1)
 	{
+		if(new_comm==1)
+			break;
 		if (position == FFT_N)
 		{
 			s=0;
@@ -257,19 +254,13 @@ void fft_r(int mode)
 			fft_run();
 			//FFT Spectrum
 			//printb(spektrum);
-			
 			for(int i=0;i<16;i++)
 			{
 				temp=0;
 				for(int j=0;j<4;j++)
 					temp+=spektrum[i*4+j];
-				//temp/=4;
 				buf[i]=(temp/4)%256;
-				//Serial.print(buf[i]);
-				//Serial.print(" ");
 			}
-			//Serial.println(" ");
-			//delay(del);
 			position = 0;
 		}
 	}
@@ -280,59 +271,55 @@ void setup()
   Wire.onRequest(requestEvent);
   Wire.onReceive(receiveI2C);   // Receive Event from Master
   Serial.begin(9600);
-  
-  //Show Pitch
-  //pitch(2,10);
-  
-  //Show power level
-  //while(1)
-  //	Serial.println(s_power(10));
-  
-  //Run FFT
-  //run_fft(0,10);
-  
 }
  uint8_t sp,sp1;
 int ptc,flag=0;
 void loop()
 {
+	new_comm=0;
 	if(cmd[1]!=0)
 	{
 		if(cmd[1]==1)
-			pitch(1);
+			pitch(cmd[2]);
 		if(cmd[1]==2)
 			buf[0]=map(analogRead(0),0,1023,0,255);
 		if(cmd[1]==3)
-		{
-			fft_r(1);
-		}
+			fft_r(cmd[2]);
 	}
 }
 
 void receiveI2C(int bytesIn)
 {
 	int i=0;
-
+	//Serial.println("New comm1");
+	//new_comm=1;
+	//cmd[0]- command
+	//cmd[1]- mode
+	if(oc[0]!=cmd[1]||oc[1]!=cmd[2])
+	{
+		Serial.println("New comm1");
+		/*Serial.print(oc[0]);
+		Serial.print(" ");
+		Serial.print(oc[1]);
+		Serial.print(" ");
+		Serial.print(cmd[1]);
+		Serial.print(" ");
+		Serial.println(cmd[2]);*/
+		new_comm=1;
+	}
+	oc[0]=cmd[1];
+	oc[1]=cmd[2];
 	while(0 < Wire.available()) // loop through all but the last
 		cmd[i++]=(int)Wire.read();
 }
 void requestEvent()
 {
+	//Serial.println("New resp");
 	if(cmd[1]==1)
 			Wire.write(buf,2);		
 	if(cmd[1]==2)
 		Wire.write(buf,1);
 	
 	if(cmd[1]==3)
-	{
-		/*for(int i=0;i<16;i++)
-		{
-			Serial.print(buf[i]);
-			Serial.print(" ");
-		}
-		Serial.println("");*/
-		//Wire.write("0123456789012345");//buf,15);
 		Wire.write(buf,15);
-
-	}
 }
