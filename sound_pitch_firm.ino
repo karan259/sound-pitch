@@ -305,13 +305,13 @@ void loop()
 		if(cmd[1]==1)
 			pitch(cmd[2]);
 		if(cmd[1]==2)
-		{
+		/*{
 			while(ADCSRA & (1 << ADSC)); // wait for conversion
 			ADCval = ADCL;
 			ADCval = (ADCH << 8) + ADCval;
 			buf[0]=map(ADCval,0,1023,0,255);
-		}
-			//buf[0]=map(analogRead(0),0,1023,0,255);
+		}*/
+			buf[0]=map(analogRead(0),0,1023,0,255);
 			
 		if(cmd[1]==3)
 			fft_r(cmd[2]);
